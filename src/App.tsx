@@ -14,6 +14,7 @@ import { ExpandableApplicationImage } from './components/ImageExpand'
 import { Header } from './components/Header'
 import { ProjectGallery } from './components/ProjectGallery'
 import { SectionHeading } from './components/SectionHeading'
+import { SkillIcon } from './components/SkillIcon'
 import { publicPath } from './utils/paths'
 import {
   academicExperience,
@@ -297,9 +298,11 @@ function App() {
             />
             <div className="skills-matrix">
               {skillGroups.map((group) => (
-                <article key={group.code} data-reveal>
+                <article key={group.label} data-reveal>
                   <div className="skill-heading">
-                    <span>{group.code}</span>
+                    <span className="skill-icon-frame">
+                      <SkillIcon name={group.icon} />
+                    </span>
                     <h3>{group.label}</h3>
                   </div>
                   <ul>

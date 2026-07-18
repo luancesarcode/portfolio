@@ -1367,7 +1367,7 @@ p {
   background: var(--paper);
 }
 
-.skill-heading span {
+.skill-icon-frame {
   display: inline-grid;
   place-items: center;
   width: 50px;
@@ -1375,9 +1375,11 @@ p {
   margin-bottom: 2.5rem;
   border: 1px solid var(--industrial);
   color: var(--industrial);
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  font-weight: 600;
+}
+
+.skill-icon {
+  width: 30px;
+  height: 30px;
 }
 
 .skill-heading h3 {
@@ -1782,7 +1784,7 @@ p {
     padding: 1rem;
   }
 
-  .skill-heading span {
+  .skill-icon-frame {
     margin-bottom: 1.5rem;
   }
 
@@ -1825,7 +1827,7 @@ p {
     border-bottom: 1px solid var(--outline);
   }
 
-  .skill-heading span {
+  .skill-icon-frame {
     margin-bottom: 0.8rem;
   }
 }

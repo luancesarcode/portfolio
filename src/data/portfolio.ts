@@ -157,22 +157,22 @@ export const academicExperience = [
 export const skillGroups = [
   {
     label: 'Automação e controle',
-    code: 'CTRL',
+    icon: 'control',
     items: ['CLPs', 'Instrumentação', 'Microcontroladores', 'Sistemas supervisórios', 'MATLAB', 'Simulink', 'TIA Portal', 'Elipse E3 Studio'],
   },
   {
     label: 'Programação e web',
-    code: 'CODE',
+    icon: 'code',
     items: ['Python', 'C++', 'JavaScript', 'HTML e CSS', 'SQL', 'WordPress'],
   },
   {
     label: 'Ferramentas e infraestrutura',
-    code: 'TOOL',
+    icon: 'infrastructure',
     items: ['Git e GitHub', 'Linux', 'Redes de computadores', 'Pacote Office', 'Agentes de IA'],
   },
   {
     label: 'Idiomas',
-    code: 'LANG',
+    icon: 'language',
     items: ['Português · nativo', 'Inglês · básico'],
   },
-]
+] as const
