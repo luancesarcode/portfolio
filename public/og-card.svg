@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f6f2"/>
+  <rect width="28" height="630" fill="#143f36"/>
+  <path d="M720 100h170v100h170v120H860v100H720" fill="none" stroke="#143f36" stroke-width="3"/>
+  <path d="M720 100h170v100h170" fill="none" stroke="#77c9c2" stroke-width="10" stroke-dasharray="24 18"/>
+  <circle cx="890" cy="200" r="13" fill="#c66a3d"/>
+  <text x="90" y="170" fill="#143f36" font-family="Arial, sans-serif" font-size="28" font-weight="700">CONTROLE · AUTOMAÇÃO · SOFTWARE</text>
+  <text x="90" y="290" fill="#17211e" font-family="Arial, sans-serif" font-size="82" font-weight="700">Luan César</text>
+  <text x="90" y="366" fill="#17211e" font-family="Arial, sans-serif" font-size="50">Engenharia em malha fechada.</text>
+  <text x="90" y="505" fill="#56635e" font-family="monospace" font-size="24">RECIFE / UFPE / DEZ.2027</text>
+</svg>
