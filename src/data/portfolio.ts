@@ -1,3 +1,5 @@
+import { publicPath } from '../utils/paths'
+
 export const profile = {
   name: 'Luan César de Souza Nascimento',
   shortName: 'Luan César',
@@ -7,8 +9,8 @@ export const profile = {
   email: 'luancesar.code@gmail.com',
   github: 'https://github.com/luancesarcode',
   linkedin: 'https://www.linkedin.com/in/luan-c%C3%A9sar-395b9b418',
-  curriculum: '/curriculo-luan-cesar.pdf',
-  photo: '/assets/luan-cesar.webp',
+  curriculum: publicPath('curriculo-luan-cesar.pdf'),
+  photo: publicPath('assets/luan-cesar.webp'),
   whatsapp: '',
 }
 
@@ -79,27 +81,27 @@ export const applications = [
 
 export const radiationGallery = [
   {
-    src: '/assets/irdp-monitor/interface-sistema.webp',
+    src: publicPath('assets/irdp-monitor/interface-sistema.webp'),
     alt: 'Interface do sistema IRDP exibindo curvas de taxa de dose dos sensores',
     caption: 'Interface de leitura com curvas de taxa de dose dos sensores.',
   },
   {
-    src: '/assets/irdp-monitor/equipamentos-transporte.webp',
+    src: publicPath('assets/irdp-monitor/equipamentos-transporte.webp'),
     alt: 'Equipamentos azuis de monitoramento acondicionados em caixa de transporte',
     caption: 'Equipamentos IRDP acondicionados para transporte em campo.',
   },
   {
-    src: '/assets/irdp-monitor/instalacao-portuaria.webp',
+    src: publicPath('assets/irdp-monitor/instalacao-portuaria.webp'),
     alt: 'Equipe posicionando um equipamento de monitoramento em área portuária',
     caption: 'Montagem de equipamento de monitoramento em área portuária.',
   },
   {
-    src: '/assets/irdp-monitor/portal-monitoramento.webp',
+    src: publicPath('assets/irdp-monitor/portal-monitoramento.webp'),
     alt: 'Representação de um portal de monitoramento ao redor de um veículo de carga',
     caption: 'Representação do portal de monitoramento ao redor de um veículo de carga.',
   },
   {
-    src: '/assets/irdp-monitor/estacao-operacao.webp',
+    src: publicPath('assets/irdp-monitor/estacao-operacao.webp'),
     alt: 'Estação de operação com monitores, câmeras e gráficos de sinais',
     caption: 'Estação de operação com câmeras, tabelas e sinais monitorados.',
   },
@@ -107,17 +109,17 @@ export const radiationGallery = [
 
 export const ecaseGallery = [
   {
-    src: '/assets/ecase/apresentacao-curso.jpeg',
+    src: publicPath('assets/ecase/apresentacao-curso.jpeg'),
     alt: 'Luan César ministrando uma apresentação em sala de aula pelo Projeto ECASE',
     caption: 'Apresentação de conteúdo técnico para participantes do Projeto ECASE.',
   },
   {
-    src: '/assets/ecase/pratica-instalacoes-eletricas.jpeg',
+    src: publicPath('assets/ecase/pratica-instalacoes-eletricas.jpeg'),
     alt: 'Atividade prática com componentes e ligações elétricas durante curso do Projeto ECASE',
     caption: 'Atividade prática de montagem e ligações elétricas.',
   },
   {
-    src: '/assets/ecase/oficina-eletrica-automacao.jpeg',
+    src: publicPath('assets/ecase/oficina-eletrica-automacao.jpeg'),
     alt: 'Participantes realizando montagem elétrica em oficina do Projeto ECASE',
     caption: 'Oficina prática de elétrica e automação com a comunidade.',
   },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { navigation } from '../data/portfolio'
+import { publicPath } from '../utils/paths'
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -23,7 +24,7 @@ export function Header() {
         <a className="brand" href="#inicio" aria-label="Luan César — voltar ao início">
           <img
             className="brand-mark"
-            src="/assets/logo-luan-cesar-marca.svg"
+            src={publicPath('assets/logo-luan-cesar-marca.svg')}
             alt=""
             aria-hidden="true"
           />

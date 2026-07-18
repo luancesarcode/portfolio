@@ -14,6 +14,7 @@ import { ExpandableApplicationImage } from './components/ImageExpand'
 import { Header } from './components/Header'
 import { ProjectGallery } from './components/ProjectGallery'
 import { SectionHeading } from './components/SectionHeading'
+import { publicPath } from './utils/paths'
 import {
   academicExperience,
   applications,
@@ -187,16 +188,16 @@ function App() {
                   <div className={`application-visual ${application.diagram === 'radiation' || application.diagram === 'education' ? 'application-visual-gallery' : ''}`}>
                     {application.code !== 'SCADA/UI' && application.code !== 'SENS/RAD' && application.code !== 'CLP/AUTO' && application.code !== 'ECAS/EDU' && <span className="application-code">{application.code}</span>}
                     {application.diagram === 'scada' ? (
-                      <ExpandableApplicationImage src="/assets/elipse.jpeg" alt="Tela SCADA Elipse E3 Studio" />
+                      <ExpandableApplicationImage src={publicPath('assets/elipse.jpeg')} alt="Tela SCADA Elipse E3 Studio" />
                     ) : application.diagram === 'radiation' ? (
                       <ProjectGallery images={radiationGallery} label="Galeria do monitoramento de radiação ionizante" />
                     ) : application.diagram === 'combustion' ? (
-                      <ExpandableApplicationImage src="/assets/automacao-clp-tia-portal.webp" alt="Tela do TIA Portal com blocos de programação de CLP" />
+                      <ExpandableApplicationImage src={publicPath('assets/automacao-clp-tia-portal.webp')} alt="Tela do TIA Portal com blocos de programação de CLP" />
                     ) : application.diagram === 'education' ? (
                       <ProjectGallery images={ecaseGallery} label="Galeria do Projeto ECASE" />
                     ) : application.diagram === 'web' ? (
                       <a href="https://radinstruments.com.br/" target="_blank" rel="noopener noreferrer" className="application-link" aria-label="Abrir site da RAD Instruments em nova aba">
-                        <img src="/assets/site-rad.jpeg" alt="Site da RAD Instruments" className="application-diagram" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={publicPath('assets/site-rad.jpeg')} alt="Site da RAD Instruments" className="application-diagram" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
                       </a>
                     ) : null}
                   </div>
@@ -227,7 +228,7 @@ function App() {
 
             <div className="degree-block" data-reveal>
               <div className="degree-symbol">
-                <img src="/assets/brasao-ufpe-sem-texto.png" alt="Brasão da Universidade Federal de Pernambuco" />
+                <img src={publicPath('assets/brasao-ufpe-sem-texto.png')} alt="Brasão da Universidade Federal de Pernambuco" />
               </div>
               <div>
                 <p className="mono-label">MAIO.2022 — ATUAL</p>
