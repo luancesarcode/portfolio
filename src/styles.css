@@ -1780,7 +1780,7 @@ p {
 
 }
 
-@media (max-width: 860px) {
+@media (max-width: 860px), (max-device-width: 860px), (hover: none) and (pointer: coarse) and (max-width: 1200px) {
   .site-container {
     width: min(100% - 2rem, 760px);
   }
@@ -1905,7 +1905,7 @@ p {
 
 }
 
-@media (max-width: 620px) {
+@media (max-width: 620px), (max-device-width: 620px), (hover: none) and (pointer: coarse) and (max-width: 980px) {
   .section-pad {
     padding-block: 4.5rem;
   }
