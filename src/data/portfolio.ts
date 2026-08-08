@@ -14,19 +14,10 @@ export const profile = {
   whatsapp: '',
 }
 
-export const navigation = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Experiência', href: '#experiencia' },
-  { label: 'Projetos e aplicações', href: '#aplicacoes' },
-  { label: 'Competências', href: '#competencias' },
-  { label: 'Formação', href: '#formacao' },
-  { label: 'Contato', href: '#contato' },
-]
-
 export const professionalExperience = {
   company: 'RAD Instruments',
   role: 'Estagiário em Instrumentação e Automação',
-  period: 'Julho de 2025 — abril de 2026',
+  period: 'Julho de 2025 — Setembro de 2026',
   context: 'Startup do PoloTec/UFPE · Tecnologia nuclear',
   activities: [
     'Desenvolvimento e manutenção do site da empresa.',
@@ -38,6 +29,7 @@ export const professionalExperience = {
 
 export const applications = [
   {
+    slug: 'monitoramento-radiacao',
     code: 'SENS/RAD',
     title: 'Monitoramento de radiação ionizante',
     context: 'Aplicação em tecnologia nuclear e equipamentos de dosimetria na RAD Instruments.',
@@ -46,6 +38,17 @@ export const applications = [
     diagram: 'radiation',
   },
   {
+    slug: 'mercosul-anpr',
+    code: 'CV/ANPR',
+    title: 'Mercosul ANPR',
+    context: 'Leitura e identificação de placas brasileiras em imagens, vídeos e câmera ao vivo.',
+    contribution: 'Desenvolvimento de uma solução de OCR para identificação de placas em tempo real, com resultados claros e acompanhamento pela interface do sistema.',
+    technologies: ['OCR', 'Identificação de placas', 'Tempo real', 'Imagens e vídeos'],
+    diagram: 'anpr',
+    repository: 'https://github.com/luancesarcode/mercosul-anpr',
+  },
+  {
+    slug: 'interfaces-scada',
     code: 'SCADA/UI',
     title: 'Interfaces SCADA e sistemas supervisórios',
     context: 'Formação complementar em monitoramento e controle de processos.',
@@ -54,6 +57,7 @@ export const applications = [
     diagram: 'scada',
   },
   {
+    slug: 'automacao-clps',
     code: 'CLP/AUTO',
     title: 'Automação industrial e programação de CLPs',
     context: 'Formação complementar na UFPE voltada à automação e ao controle de sistemas industriais.',
@@ -62,6 +66,7 @@ export const applications = [
     diagram: 'combustion',
   },
   {
+    slug: 'desenvolvimento-web-rad',
     code: 'WEB/AUTO',
     title: 'Desenvolvimento web e automações internas',
     context: 'Aplicação direta nos processos digitais da RAD Instruments.',
@@ -70,12 +75,38 @@ export const applications = [
     diagram: 'web',
   },
   {
+    slug: 'projeto-ecase',
     code: 'ECAS/EDU',
     title: 'Capacitação em elétrica e automação',
     context: 'Projeto Ecase — UFPE, de maio de 2025 a março de 2026.',
     contribution: 'Desenvolvimento e ministração de cursos para a comunidade acadêmica e o público em geral.',
     technologies: ['Elétrica', 'Automação', 'Ensino', 'Comunidade'],
     diagram: 'education',
+  },
+] as const
+
+const mercosulAnprMediaBase = 'https://raw.githubusercontent.com/luancesarcode/mercosul-anpr/main/docs/media/images'
+
+export const mercosulAnprGallery = [
+  {
+    src: `${mercosulAnprMediaBase}/interface-resultado.webp`,
+    alt: 'Resultado consolidado de placa reconhecida no Mercosul ANPR',
+    caption: 'Resultado consolidado após detecção, OCR e voto temporal.',
+  },
+  {
+    src: `${mercosulAnprMediaBase}/banner.webp`,
+    alt: 'Banner do projeto Mercosul ANPR',
+    caption: 'Visão geral do sistema de reconhecimento de placas Mercosul ANPR.',
+  },
+  {
+    src: `${mercosulAnprMediaBase}/interface-upload.webp`,
+    alt: 'Interface de envio de arquivo do Mercosul ANPR',
+    caption: 'Envio de imagens e vídeos para processamento local.',
+  },
+  {
+    src: `${mercosulAnprMediaBase}/camera-tempo-real.webp`,
+    alt: 'Interface de câmera em tempo real do Mercosul ANPR',
+    caption: 'Análise de placas por câmera em tempo real.',
   },
 ] as const
 
@@ -137,42 +168,3 @@ export const complementaryEducation = [
     description: 'Interfaces SCADA, tags, alarmes, históricos, drivers de comunicação, scripts, telas, relatórios e gráficos para monitoramento e controle de processos.',
   },
 ]
-
-export const academicExperience = [
-  {
-    organization: 'Diretório Acadêmico de Engenharia Elétrica — DADEE',
-    roles: [
-      'Diretor de TI · abril de 2025 a março de 2026',
-      'Membro da equipe de marketing · março de 2025 até o presente',
-    ],
-    details: ['Gestão de recursos tecnológicos e suporte aos processos operacionais.', 'Organização de eventos, coordenação de projetos, criação de conteúdo e estratégias de engajamento.'],
-  },
-  {
-    organization: 'Projeto Ecase — UFPE',
-    roles: ['Maio de 2025 a março de 2026'],
-    details: ['Desenvolvimento e ministração de cursos de elétrica e automação para a comunidade.'],
-  },
-]
-
-export const skillGroups = [
-  {
-    label: 'Automação e controle',
-    icon: 'control',
-    items: ['CLPs', 'Instrumentação', 'Microcontroladores', 'Sistemas supervisórios', 'MATLAB', 'Simulink', 'TIA Portal', 'Elipse E3 Studio'],
-  },
-  {
-    label: 'Programação e web',
-    icon: 'code',
-    items: ['Python', 'C++', 'JavaScript', 'HTML e CSS', 'SQL', 'WordPress'],
-  },
-  {
-    label: 'Ferramentas e infraestrutura',
-    icon: 'infrastructure',
-    items: ['Git e GitHub', 'Linux', 'Redes de computadores', 'Pacote Office', 'Agentes de IA'],
-  },
-  {
-    label: 'Idiomas',
-    icon: 'language',
-    items: ['Português · nativo', 'Inglês · básico'],
-  },
-] as const

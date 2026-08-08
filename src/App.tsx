@@ -10,22 +10,13 @@ import {
   Mail,
   MapPin,
 } from 'lucide-react'
-import { ExpandableApplicationImage } from './components/ImageExpand'
 import { Header } from './components/Header'
-import { ProjectGallery } from './components/ProjectGallery'
+import { HomeProjects } from './components/HomeProjects'
+import DotField from './components/DotField'
 import { SectionHeading } from './components/SectionHeading'
-import { SkillIcon } from './components/SkillIcon'
+import { SiteFooter } from './components/SiteFooter'
 import { publicPath } from './utils/paths'
-import {
-  academicExperience,
-  applications,
-  complementaryEducation,
-  ecaseGallery,
-  professionalExperience,
-  profile,
-  radiationGallery,
-  skillGroups,
-} from './data/portfolio'
+import { professionalExperience, profile } from './data/portfolio'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,6 +28,7 @@ function App() {
     if (!page) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const useLightReveals = window.matchMedia('(max-width: 860px), (pointer: coarse)').matches
     const context = gsap.context(() => {
       if (reduceMotion) return
 
@@ -47,22 +39,37 @@ function App() {
         .from('.portrait-panel', { x: 28, opacity: 0, duration: 0.65 }, '-=0.5')
 
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
-        gsap.from(element, {
-          y: 30,
-          opacity: 0,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 86%',
-            once: true,
+        gsap.fromTo(
+          element,
+          {
+            y: useLightReveals ? 12 : 20,
+            opacity: useLightReveals ? 1 : 0.68,
           },
-        })
+          {
+            y: 0,
+            opacity: 1,
+            duration: useLightReveals ? 0.32 : 0.5,
+            ease: 'power2.out',
+            force3D: true,
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 96%',
+              once: true,
+              fastScrollEnd: true,
+              invalidateOnRefresh: true,
+            },
+          },
+        )
       })
 
     }, page)
 
-    return () => context.revert()
+    const refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 250)
+
+    return () => {
+      window.clearTimeout(refreshTimer)
+      context.revert()
+    }
   }, [])
 
   return (
@@ -72,6 +79,19 @@ function App() {
 
       <main id="conteudo" className="page-shell">
         <section id="inicio" className="hero site-container" aria-labelledby="hero-title">
+          <div className="hero-binary-field" aria-hidden="true">
+            <DotField
+              fontSize={10}
+              glyphSpacing={18}
+              cursorRadius={280}
+              bulgeStrength={24}
+              glowRadius={180}
+              gradientFrom="rgba(20, 63, 54, 0.26)"
+              gradientTo="rgba(119, 201, 194, 0.34)"
+              glowColor="rgba(119, 201, 194, 0.24)"
+            />
+          </div>
+
           <div className="hero-copy">
 
             <h1 id="hero-title" className="hero-reveal">
@@ -110,24 +130,23 @@ function App() {
           </div>
 
           <div className="portrait-panel">
-            <div className="portrait-header">
-              <span>REF. LC - UFPE</span>
-            </div>
-            <div className="portrait-frame">
-              <span className="corner corner-a" aria-hidden="true" />
-              <span className="corner corner-b" aria-hidden="true" />
-              <span className="corner corner-c" aria-hidden="true" />
-              <span className="corner corner-d" aria-hidden="true" />
-              <img
-                src={profile.photo}
-                alt="Retrato de Luan César"
-                width="600"
-                height="600"
-                fetchPriority="high"
-              />
-              <div className="portrait-caption">
-                <strong>{profile.name}</strong>
-                <span>{profile.role}</span>
+            <div className="portrait-stack">
+              <div className="portrait-frame">
+                <span className="corner corner-a" aria-hidden="true" />
+                <span className="corner corner-b" aria-hidden="true" />
+                <span className="corner corner-c" aria-hidden="true" />
+                <span className="corner corner-d" aria-hidden="true" />
+                <img
+                  src={profile.photo}
+                  alt="Retrato de Luan César"
+                  width="600"
+                  height="600"
+                  fetchPriority="high"
+                />
+                <div className="portrait-caption">
+                  <strong>{profile.name}</strong>
+                  <span>{profile.role}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -143,91 +162,8 @@ function App() {
                 Tenho interesse em criar soluções que aproximem sistemas físicos, programação e monitoramento de processos.
               </p>
             </div>
-          </div>
-        </section>
 
-        <section id="experiencia" className="experience-section section-pad">
-          <div className="site-container">
-            <SectionHeading
-               code=""
-              title="Experiência profissional"
-              intro="Uma passagem pela tecnologia nuclear em que software, instrumentação e bancada fizeram parte do mesmo processo."
-              inverse
-            />
-
-            <article className="experience-record" data-reveal>
-              <div className="experience-meta">
-                <span className="record-status">EXPERIÊNCIA CONCLUÍDA</span>
-                <p>{professionalExperience.period}</p>
-                <p>{professionalExperience.context}</p>
-              </div>
-              <div className="experience-main">
-                <span className="company-index">RAD</span>
-                <h3>{professionalExperience.company}</h3>
-                <p className="experience-role">{professionalExperience.role}</p>
-                <ul className="technical-list">
-                  {professionalExperience.activities.map((activity) => (
-                    <li key={activity}>{activity}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="aplicacoes" className="applications-section section-pad">
-          <div className="site-container">
-            <SectionHeading
-               code=""
-              title="Projetos e aplicações"
-              intro="Estudos de aplicação construídos somente a partir de experiências e formações verificadas — sem projetos ou resultados inventados."
-            />
-
-            <div className="applications-list">
-              {applications.map((application, index) => (
-                <article className={`application-study ${index === 0 ? 'application-featured' : ''}`} key={application.title} data-reveal>
-                  <div className={`application-visual ${application.diagram === 'radiation' || application.diagram === 'education' ? 'application-visual-gallery' : ''}`}>
-                    {application.code !== 'SCADA/UI' && application.code !== 'SENS/RAD' && application.code !== 'CLP/AUTO' && application.code !== 'ECAS/EDU' && <span className="application-code">{application.code}</span>}
-                    {application.diagram === 'scada' ? (
-                      <ExpandableApplicationImage src={publicPath('assets/elipse.jpeg')} alt="Tela SCADA Elipse E3 Studio" />
-                    ) : application.diagram === 'radiation' ? (
-                      <ProjectGallery images={radiationGallery} label="Galeria do monitoramento de radiação ionizante" />
-                    ) : application.diagram === 'combustion' ? (
-                      <ExpandableApplicationImage src={publicPath('assets/automacao-clp-tia-portal.webp')} alt="Tela do TIA Portal com blocos de programação de CLP" />
-                    ) : application.diagram === 'education' ? (
-                      <ProjectGallery images={ecaseGallery} label="Galeria do Projeto ECASE" />
-                    ) : application.diagram === 'web' ? (
-                      <a href="https://radinstruments.com.br/" target="_blank" rel="noopener noreferrer" className="application-link" aria-label="Abrir site da RAD Instruments em nova aba">
-                        <img src={publicPath('assets/site-rad.jpeg')} alt="Site da RAD Instruments" className="application-diagram" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
-                      </a>
-                    ) : null}
-                  </div>
-                  <div className="application-copy">
-                    <h3>{application.title}</h3>
-                    <p>{application.context}</p>
-                    <dl>
-                      <dt>PARTICIPAÇÃO</dt>
-                      <dd>{application.contribution}</dd>
-                    </dl>
-                    <ul className="tag-list" aria-label="Tecnologias relacionadas">
-                      {application.technologies.map((technology) => <li key={technology}>{technology}</li>)}
-                    </ul>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="formacao" className="education-section section-pad">
-          <div className="site-container">
-            <SectionHeading
-               code=""
-              title="Formação"
-              intro="Base acadêmica e aprofundamentos que conectam controle, supervisão e processos físicos."
-            />
-
-            <div className="degree-block" data-reveal>
+            <div id="formacao" className="degree-block" data-reveal>
               <div className="degree-symbol">
                 <img src={publicPath('assets/brasao-ufpe-sem-texto.png')} alt="Brasão da Universidade Federal de Pernambuco" />
               </div>
@@ -247,72 +183,59 @@ function App() {
                 <li>Eletrônica de potência</li>
               </ul>
             </div>
-
-            <div className="complementary-grid">
-              <div className="complementary-intro" data-reveal>
-                <span className="mono-label">FORMAÇÃO COMPLEMENTAR</span>
-                <p>Do sinal de campo à tela supervisória.</p>
-              </div>
-              <div className="course-stack">
-                {complementaryEducation.map((course) => (
-                  <article key={course.title} data-reveal>
-                    <div className="course-node" aria-hidden="true" />
-                    <span>{course.institution}</span>
-                    <h3>{course.title}</h3>
-                    <p>{course.description}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
-        <section id="academia" className="academic-section section-pad">
-          <div className="site-container academic-grid">
-            <SectionHeading
-               code=""
-              title="Experiência acadêmica"
-              intro="Tecnologia, comunicação e formação compartilhada dentro da comunidade UFPE."
-              inverse
-            />
-            <div className="academic-records">
-              {academicExperience.map((experience) => (
-                <article key={experience.organization} data-reveal>
-                  <h3>{experience.organization}</h3>
-                  {experience.roles.map((role) => <p className="academic-role" key={role}>{role}</p>)}
-                  <ul className="technical-list">
-                    {experience.details.map((detail) => <li key={detail}>{detail}</li>)}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="competencias" className="skills-section section-pad">
+        <section id="experiencia" className="experience-section section-pad">
           <div className="site-container">
             <SectionHeading
                code=""
-              title="Competências"
-              intro="Ferramentas organizadas por domínio, sem níveis artificiais ou porcentagens."
+              title="Experiência profissional"
+              intro="Uma passagem pela tecnologia nuclear em que software, instrumentação e bancada fizeram parte do mesmo processo."
+              inverse
             />
-            <div className="skills-matrix">
-              {skillGroups.map((group) => (
-                <article key={group.label} data-reveal>
-                  <div className="skill-heading">
-                    <span className="skill-icon-frame">
-                      <SkillIcon name={group.icon} />
-                    </span>
-                    <h3>{group.label}</h3>
+
+            <article className="experience-record" data-reveal>
+              <div className="experience-meta">
+                <span className="record-status">
+                  <span aria-hidden="true" />
+                  Experiência concluída
+                </span>
+                <dl className="experience-details">
+                  <div>
+                    <dt>Período</dt>
+                    <dd>{professionalExperience.period}</dd>
                   </div>
-                  <ul>
-                    {group.items.map((item) => <li key={item}>{item}</li>)}
+                  <div>
+                    <dt>Contexto</dt>
+                    <dd>{professionalExperience.context}</dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="experience-main">
+                <div className="experience-company">
+                  <span className="company-index" aria-hidden="true">
+                    <img src={publicPath('assets/rad-trefoil.svg')} alt="" />
+                  </span>
+                  <div>
+                    <h3>{professionalExperience.company}</h3>
+                    <p className="experience-role">{professionalExperience.role}</p>
+                  </div>
+                </div>
+                <div className="experience-activities">
+                  <p className="experience-activities-label">Principais atividades</p>
+                  <ul className="technical-list">
+                    {professionalExperience.activities.map((activity) => (
+                      <li key={activity}>{activity}</li>
+                    ))}
                   </ul>
-                </article>
-              ))}
-            </div>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
+
+        <HomeProjects />
 
         <section id="contato" className="contact-section section-pad">
           <div className="site-container contact-grid">
@@ -341,13 +264,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="site-container">
-          <p>© {new Date().getFullYear()} {profile.shortName}</p>
-          <p>ENGENHARIA EM MALHA FECHADA</p>
-          <a href="#inicio">Voltar ao início ↑</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
