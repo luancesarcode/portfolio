@@ -25,7 +25,6 @@ export function HomeProjects() {
       <div className="site-container">
         <header className="home-projects-heading" data-reveal>
           <div>
-            <p className="eyebrow">TRABALHOS SELECIONADOS</p>
             <h2 id="home-projects-title">Projetos</h2>
           </div>
           <a className="home-projects-link" href={projectsPage}>
@@ -43,15 +42,17 @@ export function HomeProjects() {
               data-reveal
             >
               <figure className="project-preview-media">
-                <div className="project-preview-image">
-                  <img
-                    src={projectCovers[project.diagram]}
-                    alt=""
-                    width="1040"
-                    height="650"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                <div className="project-preview-frame">
+                  <div className="project-preview-image">
+                    <img
+                      src={projectCovers[project.diagram]}
+                      alt=""
+                      width="1040"
+                      height="650"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
                 <span className="project-preview-corner project-preview-corner-a" aria-hidden="true" />
                 <span className="project-preview-corner project-preview-corner-b" aria-hidden="true" />

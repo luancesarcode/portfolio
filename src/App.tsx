@@ -86,8 +86,8 @@ function App() {
               cursorRadius={280}
               bulgeStrength={24}
               glowRadius={180}
-              gradientFrom="rgba(20, 63, 54, 0.26)"
-              gradientTo="rgba(119, 201, 194, 0.34)"
+              gradientFrom="rgba(20, 63, 54, 0.18)"
+              gradientTo="rgba(20, 63, 54, 0.18)"
               glowColor="rgba(119, 201, 194, 0.24)"
             />
           </div>
@@ -207,7 +207,7 @@ function App() {
                     <dd>{professionalExperience.period}</dd>
                   </div>
                   <div>
-                    <dt>Contexto</dt>
+                    <dt>Organização</dt>
                     <dd>{professionalExperience.context}</dd>
                   </div>
                 </dl>
