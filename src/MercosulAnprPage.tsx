@@ -4,12 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   ArrowLeft,
   ArrowUpRight,
-  Camera,
-  Check,
-  FileImage,
   Github,
   ShieldCheck,
-  Video,
 } from 'lucide-react'
 import { Header } from './components/Header'
 import { SiteFooter } from './components/SiteFooter'
@@ -28,7 +24,7 @@ const media = {
   result: publicPath('assets/mercosul-anpr/interface-resultado.webp'),
 }
 
-const pipeline = [
+const inferenceFlow = [
   {
     tag: '01 / INPUT',
     title: 'Imagem, vídeo ou câmera',
@@ -62,14 +58,12 @@ const pipeline = [
 ]
 
 const technologies = [
-  ['Python 3.10 / 3.11', 'Base do pipeline, CLI, API e automações de dataset.'],
+  ['Python 3.10 / 3.11', 'Base do fluxo de execução, CLI, API e automações de dataset.'],
   ['YOLO + Ultralytics', 'Detecção de veículos e placas com pesos locais.'],
   ['PyTorch + CUDA', 'Inferência dos detectores em CPU ou GPU NVIDIA.'],
   ['OpenCV + NumPy', 'Geometria, recorte, contraste, binarização e composição sintética.'],
   ['PaddleOCR', 'Reconhecimento dos caracteres em múltiplas variantes da placa.'],
   ['FastAPI + Uvicorn', 'API local, jobs assíncronos e sessões de câmera em tempo real.'],
-  ['Ruff + pytest', 'Análise estática e testes automatizados com cobertura mínima configurada.'],
-  ['GitHub Actions', 'Verificação contínua do lint, testes e build do pacote.'],
 ]
 
 const repositories = [
@@ -156,13 +150,13 @@ export default function MercosulAnprPage() {
                 <p className="anpr-kicker">CASE STUDY / VISÃO COMPUTACIONAL</p>
                 <h1 id="anpr-title">Mercosul <span>ANPR</span></h1>
                 <p className="anpr-lead">
-                  Um pipeline local para detectar veículos, localizar placas brasileiras e transformar pixels em uma leitura confiável — em imagens, vídeos e câmera ao vivo.
+                  Sistema de visão computacional para detecção de veículos e reconhecimento de placas brasileiras em imagens, vídeos e câmera ao vivo.
                 </p>
                 <div className="anpr-actions">
                   <a className="anpr-primary-link" href="https://github.com/luancesarcode/mercosul-anpr" target="_blank" rel="noopener noreferrer">
                     <Github aria-hidden="true" /> Ver código <ArrowUpRight aria-hidden="true" />
                   </a>
-                  <a className="anpr-text-link" href="#metodo">Entender o pipeline ↓</a>
+                  <a className="anpr-text-link" href="#metodo">Entender o fluxo ↓</a>
                 </div>
                 <ul className="anpr-status-list" aria-label="Informações do projeto">
                   <li><span>STATUS</span> Alpha / v0.1.0</li>
@@ -185,17 +179,7 @@ export default function MercosulAnprPage() {
               </figure>
             </div>
 
-            <div className="anpr-readout" aria-label="Exemplo de leitura OCR">
-              <div>
-                <span className="anpr-readout-label">OCR / PADRÃO MERCOSUL</span>
-                <strong aria-label="G G C 8 H 7 5">
-                  {'GGC8H75'.split('').map((character, index) => <i key={`${character}-${index}`}>{character}</i>)}
-                </strong>
-              </div>
-              <p><span>FORMATO</span> LLLNLNN</p>
-              <p><span>FONTE</span> FRAME LOCAL</p>
-              <p><span>SAÍDA</span> OVERLAY + JSON + CSV</p>
-            </div>
+
           </div>
         </section>
 
@@ -248,39 +232,64 @@ export default function MercosulAnprPage() {
               </article>
             </div>
 
-            <div className="anpr-augmentation-strip" data-anpr-reveal>
-              <span>PERSPECTIVA</span><span>ROTAÇÃO</span><span>LUZ</span><span>RUÍDO</span><span>JPEG</span><span>CHUVA</span><span>NOITE</span><span>OCLUSÃO</span><span>DESFOQUE</span>
-            </div>
+
           </div>
         </section>
 
         <section className="anpr-training-section anpr-section" aria-labelledby="training-title">
-          <div className="anpr-shell anpr-training-grid">
-            <div className="anpr-training-copy" data-anpr-reveal>
-              <p className="anpr-section-tag">MÉTODO DE TREINAMENTO</p>
-              <h2 id="training-title">Gerar, anotar, inspecionar, treinar e medir.</h2>
-              <ol className="anpr-training-list">
-                <li><span>01</span><p><strong>Preparação do conjunto</strong>Separação em treino, validação e teste, preservando labels YOLO correspondentes às imagens.</p></li>
-                <li><span>02</span><p><strong>Geração sintética</strong>Variações geométricas, ópticas e ambientais ampliam a diversidade sem alterar a rastreabilidade dos rótulos.</p></li>
-                <li><span>03</span><p><strong>Inspeção das caixas</strong>O visualizador próprio percorre imagens e labels para detectar anotações deslocadas ou inconsistentes.</p></li>
-                <li><span>04</span><p><strong>Treino e avaliação</strong>O detector é ajustado sobre o conjunto combinado e validado por acerto de placa, caracteres, falsos positivos e latência.</p></li>
-              </ol>
+          <div className="anpr-shell">
+            <div className="anpr-training-top-grid" data-anpr-reveal>
+              <div>
+                <p className="anpr-section-tag">MÉTODO DE TREINAMENTO</p>
+                <h2 id="training-title">Gerar, anotar, inspecionar, treinar e medir.</h2>
+              </div>
+              <figure className="anpr-training-figure">
+                <img src={media.bboxNight} alt="Visualizador de bounding boxes mostrando uma placa detectada em caminhão durante a noite" width="1102" height="792" loading="lazy" decoding="async" />
+                <figcaption><span>QA / BBOX</span> Ferramenta própria de inspeção das anotações antes do treinamento.</figcaption>
+              </figure>
             </div>
-            <figure className="anpr-training-figure" data-anpr-reveal>
-              <img src={media.bboxNight} alt="Visualizador de bounding boxes mostrando uma placa detectada em caminhão durante a noite" width="1102" height="792" loading="lazy" decoding="async" />
-              <figcaption><span>QA / BBOX</span> Ferramenta própria de inspeção das anotações antes do treinamento.</figcaption>
-            </figure>
+
+            <ol className="anpr-training-list">
+              <li data-anpr-reveal>
+                <span>01</span>
+                <div>
+                  <strong>Preparação do conjunto</strong>
+                  <p>Separação em treino, validação e teste, preservando labels YOLO correspondentes às imagens.</p>
+                </div>
+              </li>
+              <li data-anpr-reveal>
+                <span>02</span>
+                <div>
+                  <strong>Geração sintética</strong>
+                  <p>Variações geométricas, ópticas e ambientais ampliam a diversidade sem alterar a rastreabilidade dos rótulos.</p>
+                </div>
+              </li>
+              <li data-anpr-reveal>
+                <span>03</span>
+                <div>
+                  <strong>Inspeção das caixas</strong>
+                  <p>O visualizador próprio percorre imagens e labels para detectar anotações deslocadas ou inconsistentes.</p>
+                </div>
+              </li>
+              <li data-anpr-reveal>
+                <span>04</span>
+                <div>
+                  <strong>Treino e avaliação</strong>
+                  <p>O detector é ajustado sobre o conjunto combinado e validado por acerto de placa, caracteres, falsos positivos e latência.</p>
+                </div>
+              </li>
+            </ol>
           </div>
         </section>
 
         <section className="anpr-pipeline-section anpr-section" id="metodo" aria-labelledby="pipeline-title">
           <div className="anpr-shell">
             <header className="anpr-section-heading anpr-section-heading-inverse" data-anpr-reveal>
-              <p className="anpr-section-tag">PIPELINE DE INFERÊNCIA</p>
+              <p className="anpr-section-tag">FLUXO DE INFERÊNCIA</p>
               <h2 id="pipeline-title">Do frame bruto à leitura consolidada.</h2>
             </header>
             <ol className="anpr-pipeline-list">
-              {pipeline.map((step) => (
+              {inferenceFlow.map((step) => (
                 <li key={step.tag} data-anpr-reveal>
                   <span>{step.tag}</span>
                   <h3>{step.title}</h3>
@@ -301,14 +310,6 @@ export default function MercosulAnprPage() {
               <p className="anpr-section-tag">OCR E PÓS-PROCESSAMENTO</p>
               <h2 id="ocr-title">Mais de uma leitura. Um resultado rastreável.</h2>
               <p>PaddleOCR recebe versões preparadas do mesmo recorte. O sistema compara hipóteses e evita transformar confiança bruta em certeza artificial.</p>
-              <ul>
-                <li><Check aria-hidden="true" /> Upscale limitado para recortes pequenos</li>
-                <li><Check aria-hidden="true" /> CLAHE e polaridade normalizada</li>
-                <li><Check aria-hidden="true" /> Deskew pela faixa azul e por contornos</li>
-                <li><Check aria-hidden="true" /> Consenso entre variantes do recorte</li>
-                <li><Check aria-hidden="true" /> Correções contextuais para ambiguidades como 0/O, 1/I e 8/B</li>
-                <li><Check aria-hidden="true" /> Penalidades e limites contra correções excessivas</li>
-              </ul>
             </div>
           </div>
         </section>
@@ -323,15 +324,12 @@ export default function MercosulAnprPage() {
             <div className="anpr-product-mosaic">
               <figure className="anpr-product-feature" data-anpr-reveal>
                 <img src={media.result} alt="Interface do Mercosul ANPR com resultado consolidado, confiança e imagem anotada" width="640" height="480" loading="lazy" decoding="async" />
-                <figcaption><FileImage aria-hidden="true" /><span><strong>Arquivo</strong>Imagem ou vídeo com download da mídia, log, JSON e CSV.</span></figcaption>
               </figure>
               <figure data-anpr-reveal>
                 <img src={media.realtime} alt="Interface de câmera em tempo real do Mercosul ANPR" width="640" height="480" loading="lazy" decoding="async" />
-                <figcaption><Camera aria-hidden="true" /><span><strong>Câmera ao vivo</strong>Frames processados em memória com estado temporal por sessão.</span></figcaption>
               </figure>
               <figure data-anpr-reveal>
                 <img src={media.upload} alt="Interface de envio de imagem ou vídeo do Mercosul ANPR" width="640" height="480" loading="lazy" decoding="async" />
-                <figcaption><Video aria-hidden="true" /><span><strong>Job local</strong>Progresso, retenção e artefatos organizados por processamento.</span></figcaption>
               </figure>
             </div>
           </div>
@@ -358,7 +356,7 @@ export default function MercosulAnprPage() {
           <div className="anpr-shell">
             <header className="anpr-section-heading anpr-section-heading-inverse" data-anpr-reveal>
               <p className="anpr-section-tag">CÓDIGO ABERTO</p>
-              <h2 id="repo-title">Três repositórios, um sistema.</h2>
+              <h2 id="repo-title">Repositórios do projeto.</h2>
             </header>
             <div className="anpr-repo-list">
               {repositories.map((repository) => (
