@@ -803,9 +803,13 @@
 
 .anpr-tech-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   align-items: start;
   gap: clamp(3rem, 8vw, 9rem);
+}
+
+.anpr-tech-grid > * {
+  min-width: 0;
 }
 
 .anpr-tech-grid header {
@@ -814,7 +818,10 @@
 }
 
 .anpr-tech-grid h2 {
+  max-width: 10ch;
   margin-bottom: 0;
+  font-size: clamp(3.4rem, 5.2vw, 5.8rem);
+  text-wrap: balance;
 }
 
 .anpr-tech-list {
@@ -1074,18 +1081,44 @@
 
   .anpr-dataset-card {
     grid-template-rows: auto auto;
+    min-width: 0;
+  }
+
+  .anpr-dataset-ledger {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .anpr-dataset-plus {
+    display: grid;
+    place-items: center;
+    min-height: 2rem;
+    font-size: 2rem;
+    line-height: 1;
   }
 
   .anpr-dataset-card figure {
-    min-height: 220px;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
   }
 
   .anpr-dataset-card > div {
     grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1.35rem;
   }
 
   .anpr-dataset-card strong {
     grid-row: auto;
+    font-size: clamp(3.2rem, 16vw, 4.2rem);
+  }
+
+  .anpr-dataset-card h3 {
+    margin-top: 0.45rem;
+  }
+
+  .anpr-dataset-card p {
+    overflow-wrap: anywhere;
   }
 
   .anpr-training-list {
@@ -1102,10 +1135,22 @@
 
   .anpr-pipeline-list li {
     min-height: auto;
+    padding: 1.35rem;
   }
 
   .anpr-pipeline-list li > span {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .anpr-pipeline-list h3 {
+    max-width: 14ch;
+    font-size: clamp(1.7rem, 8.5vw, 2.25rem);
+  }
+
+  .anpr-pipeline-list p {
+    max-width: 32rem;
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
   }
 
   .anpr-plate-figure img {

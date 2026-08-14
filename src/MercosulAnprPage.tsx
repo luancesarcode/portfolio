@@ -53,7 +53,7 @@ const inferenceFlow = [
   {
     tag: '06 / OUTPUT',
     title: 'Overlay, JSON e CSV',
-    text: 'O resultado final reúne imagem anotada, placa, confiança, track e artefatos estruturados.',
+    text: 'A saída registra imagem anotada, placa, confiança, track e os artefatos usados na análise.',
   },
 ]
 
@@ -70,19 +70,19 @@ const repositories = [
   {
     index: 'R/01',
     name: 'mercosul-anpr',
-    description: 'Aplicação final: detecção, OCR, tracking, API, CLI e interface web local.',
+    description: 'Aplicação principal: detecção, OCR, tracking, API, CLI e interface web local.',
     href: 'https://github.com/luancesarcode/mercosul-anpr',
   },
   {
     index: 'R/02',
     name: 'visualizador-bbox-yolo',
-    description: 'Ferramenta gráfica para revisar imagens, labels e bounding boxes no formato YOLO.',
+    description: 'Ferramenta gráfica usada para revisar imagens, labels e bounding boxes no formato YOLO.',
     href: 'https://github.com/luancesarcode/visualizador-bbox-yolo',
   },
   {
     index: 'R/03',
     name: 'gerador-sintetico-placas-mercosul-yolo',
-    description: 'Geração de placas sintéticas, cenários variados e anotações de placa e caractere.',
+    description: 'Gerador de placas sintéticas, cenários variados e anotações de placa e caractere.',
     href: 'https://github.com/luancesarcode/gerador-sintetico-placas-mercosul-yolo',
   },
 ]
@@ -147,21 +147,21 @@ export default function MercosulAnprPage() {
 
             <div className="anpr-hero-grid">
               <div className="anpr-hero-copy" data-anpr-intro>
-                <p className="anpr-kicker">CASE STUDY / VISÃO COMPUTACIONAL</p>
+                <p className="anpr-kicker">PROJETO / VISÃO COMPUTACIONAL</p>
                 <h1 id="anpr-title">Mercosul <span>ANPR</span></h1>
                 <p className="anpr-lead">
-                  Sistema de visão computacional para detecção de veículos e reconhecimento de placas brasileiras em imagens, vídeos e câmera ao vivo.
+                  Registro da construção de um sistema de visão computacional para detectar veículos e reconhecer placas brasileiras em imagens, vídeos e câmera ao vivo.
                 </p>
                 <div className="anpr-actions">
                   <a className="anpr-primary-link" href="https://github.com/luancesarcode/mercosul-anpr" target="_blank" rel="noopener noreferrer">
-                    <Github aria-hidden="true" /> Ver código <ArrowUpRight aria-hidden="true" />
+                    <Github aria-hidden="true" /> Abrir repositório <ArrowUpRight aria-hidden="true" />
                   </a>
-                  <a className="anpr-text-link" href="#metodo">Entender o fluxo ↓</a>
+                  <a className="anpr-text-link" href="#metodo">Entender o projeto ↓</a>
                 </div>
                 <ul className="anpr-status-list" aria-label="Informações do projeto">
-                  <li><span>STATUS</span> Alpha / v0.1.0</li>
+                  <li><span>STATUS</span> Protótipo / v0.1.0</li>
                   <li><span>EXECUÇÃO</span> Local-first</li>
-                  <li><span>LICENÇA</span> MIT</li>
+                  <li><span>ESCOPO</span> Imagem, vídeo e câmera</li>
                 </ul>
               </div>
 
@@ -186,12 +186,12 @@ export default function MercosulAnprPage() {
         <section className="anpr-intro-section anpr-section" aria-labelledby="visao-geral-title">
           <div className="anpr-shell anpr-intro-grid">
             <div data-anpr-reveal>
-              <p className="anpr-section-tag">O PROBLEMA</p>
-              <h2 id="visao-geral-title">Ler uma placa é acompanhar uma sequência, não apenas recortar uma imagem.</h2>
+              <p className="anpr-section-tag">PONTO DE PARTIDA</p>
+              <h2 id="visao-geral-title">O projeto organiza a leitura de placas em etapas observáveis e testáveis.</h2>
             </div>
             <div className="anpr-intro-copy" data-anpr-reveal>
-              <p>Distância, baixa luz, reflexos, perspectiva, movimento e caracteres visualmente parecidos tornam a leitura instável. O sistema foi desenhado para separar essas dificuldades em etapas observáveis e testáveis.</p>
-              <p>A mesma arquitetura atende imagem, vídeo e câmera. Os modelos permanecem carregados; cada fonte recebe tracking e voto temporal próprios, sem enviar frames para serviços externos.</p>
+              <p>O ponto de partida foram cenas com distância, baixa luz, reflexos, perspectiva, movimento e caracteres visualmente parecidos. Cada dificuldade foi separada em uma etapa observável e testável.</p>
+              <p>A mesma arquitetura recebe imagem, vídeo e câmera. Os modelos permanecem carregados; cada fonte passa por tracking e voto temporal, sem enviar frames para serviços externos.</p>
             </div>
           </div>
         </section>
@@ -199,9 +199,9 @@ export default function MercosulAnprPage() {
         <section className="anpr-dataset-section anpr-section" id="dados" aria-labelledby="dataset-title">
           <div className="anpr-shell">
             <header className="anpr-section-heading" data-anpr-reveal>
-              <p className="anpr-section-tag">DADOS DE TREINAMENTO</p>
-              <h2 id="dataset-title">30 mil imagens para aproximar o modelo das condições reais.</h2>
-              <p>O conjunto combinou registros reais com geração sintética controlada. O dataset permanece privado e não é distribuído nos repositórios.</p>
+              <p className="anpr-section-tag">CONJUNTO DE DADOS</p>
+              <h2 id="dataset-title">30 mil imagens organizadas para testar diferentes condições de captura.</h2>
+              <p>O conjunto foi composto por 10 mil imagens reais e 20 mil imagens sintéticas. A geração, a revisão e a divisão dos dados fazem parte da construção do projeto.</p>
             </header>
 
             <div className="anpr-dataset-ledger">
@@ -240,8 +240,8 @@ export default function MercosulAnprPage() {
           <div className="anpr-shell">
             <div className="anpr-training-top-grid" data-anpr-reveal>
               <div>
-                <p className="anpr-section-tag">MÉTODO DE TREINAMENTO</p>
-                <h2 id="training-title">Gerar, anotar, inspecionar, treinar e medir.</h2>
+                <p className="anpr-section-tag">CONSTRUÇÃO DO TREINAMENTO</p>
+                <h2 id="training-title">Preparar os dados, revisar as anotações e avaliar os modelos.</h2>
               </div>
               <figure className="anpr-training-figure">
                 <img src={media.bboxNight} alt="Visualizador de bounding boxes mostrando uma placa detectada em caminhão durante a noite" width="1102" height="792" loading="lazy" decoding="async" />
@@ -285,7 +285,7 @@ export default function MercosulAnprPage() {
         <section className="anpr-pipeline-section anpr-section" id="metodo" aria-labelledby="pipeline-title">
           <div className="anpr-shell">
             <header className="anpr-section-heading anpr-section-heading-inverse" data-anpr-reveal>
-              <p className="anpr-section-tag">FLUXO DE INFERÊNCIA</p>
+              <p className="anpr-section-tag">ETAPAS DO PROJETO</p>
               <h2 id="pipeline-title">Do frame bruto à leitura consolidada.</h2>
             </header>
             <ol className="anpr-pipeline-list">
@@ -308,8 +308,8 @@ export default function MercosulAnprPage() {
             </figure>
             <div className="anpr-ocr-copy" data-anpr-reveal>
               <p className="anpr-section-tag">OCR E PÓS-PROCESSAMENTO</p>
-              <h2 id="ocr-title">Mais de uma leitura. Um resultado rastreável.</h2>
-              <p>PaddleOCR recebe versões preparadas do mesmo recorte. O sistema compara hipóteses e evita transformar confiança bruta em certeza artificial.</p>
+              <h2 id="ocr-title">Como a leitura é comparada e registrada.</h2>
+              <p>O PaddleOCR recebe versões preparadas do mesmo recorte. As hipóteses são comparadas entre variantes e frames, mantendo o caminho até o resultado visível.</p>
             </div>
           </div>
         </section>
@@ -317,9 +317,9 @@ export default function MercosulAnprPage() {
         <section className="anpr-product-section anpr-section" aria-labelledby="product-title">
           <div className="anpr-shell">
             <header className="anpr-section-heading" data-anpr-reveal>
-              <p className="anpr-section-tag">PRODUTO FINAL</p>
-              <h2 id="product-title">Uma aplicação local para arquivo e câmera.</h2>
-              <p>CLI, API REST e interface web reutilizam o mesmo serviço e os mesmos modelos carregados.</p>
+              <p className="anpr-section-tag">INTERFACES DE TESTE</p>
+              <h2 id="product-title">Uma aplicação local para observar cada etapa.</h2>
+              <p>CLI, API REST e interface web reutilizam o mesmo serviço e os mesmos modelos carregados para facilitar os testes com arquivo, vídeo e câmera.</p>
             </header>
             <div className="anpr-product-mosaic">
               <figure className="anpr-product-feature" data-anpr-reveal>
@@ -339,7 +339,7 @@ export default function MercosulAnprPage() {
           <div className="anpr-shell anpr-tech-grid">
             <header data-anpr-reveal>
               <p className="anpr-section-tag">FERRAMENTAS</p>
-              <h2 id="tech-title">Tecnologia usada em cada camada.</h2>
+              <h2 id="tech-title">Tecnologias usadas na construção.</h2>
             </header>
             <dl className="anpr-tech-list">
               {technologies.map(([name, description], index) => (
@@ -355,8 +355,8 @@ export default function MercosulAnprPage() {
         <section className="anpr-repo-section anpr-section" aria-labelledby="repo-title">
           <div className="anpr-shell">
             <header className="anpr-section-heading anpr-section-heading-inverse" data-anpr-reveal>
-              <p className="anpr-section-tag">CÓDIGO ABERTO</p>
-              <h2 id="repo-title">Repositórios do projeto.</h2>
+              <p className="anpr-section-tag">REPOSITÓRIOS</p>
+              <h2 id="repo-title">Código usado na construção.</h2>
             </header>
             <div className="anpr-repo-list">
               {repositories.map((repository) => (
@@ -369,7 +369,7 @@ export default function MercosulAnprPage() {
             </div>
             <aside className="anpr-privacy-note" data-anpr-reveal>
               <ShieldCheck aria-hidden="true" />
-              <p><strong>Privacidade por projeto.</strong> O código processa entradas localmente. Datasets e imagens de placas exigem autorização, revisão de privacidade e retenção mínima.</p>
+              <p><strong>Escopo e privacidade.</strong> O código processa as entradas localmente. Datasets e imagens de placas exigem autorização, revisão de privacidade e retenção mínima.</p>
             </aside>
           </div>
         </section>
