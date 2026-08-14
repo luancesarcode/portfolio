@@ -51,12 +51,22 @@ export function ProjectCatalog({ standalone = false }: ProjectCatalogProps) {
                   <dt>PARTICIPAÇÃO</dt>
                   <dd>{application.contribution}</dd>
                 </dl>
-                {'repository' in application && (
-                  <a className="project-repository-link" href={application.repository} target="_blank" rel="noopener noreferrer">
-                    <Github aria-hidden="true" />
-                    Ver repositório
-                    <ArrowUpRight aria-hidden="true" />
-                  </a>
+                {('page' in application || 'repository' in application) && (
+                  <div className="application-actions">
+                    {'page' in application && typeof application.page === 'string' && (
+                      <a className="project-repository-link" href={application.page}>
+                        Ver estudo completo
+                        <ArrowUpRight aria-hidden="true" />
+                      </a>
+                    )}
+                    {'repository' in application && typeof application.repository === 'string' && (
+                      <a className="project-repository-link" href={application.repository} target="_blank" rel="noopener noreferrer">
+                        <Github aria-hidden="true" />
+                        Ver repositório
+                        <ArrowUpRight aria-hidden="true" />
+                      </a>
+                    )}
+                  </div>
                 )}
                 <ul className="tag-list" aria-label="Tecnologias relacionadas">
                   {application.technologies.map((technology) => <li key={technology}>{technology}</li>)}

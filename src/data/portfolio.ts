@@ -45,6 +45,7 @@ export const applications = [
     contribution: 'Desenvolvimento de uma solução de OCR para identificação de placas em tempo real, com resultados claros e acompanhamento pela interface do sistema.',
     technologies: ['OCR', 'Identificação de placas', 'Tempo real', 'Imagens e vídeos'],
     diagram: 'anpr',
+    page: publicPath('mercosul-anpr/'),
     repository: 'https://github.com/luancesarcode/mercosul-anpr',
   },
   {
@@ -85,26 +86,24 @@ export const applications = [
   },
 ] as const
 
-const mercosulAnprMediaBase = 'https://raw.githubusercontent.com/luancesarcode/mercosul-anpr/main/docs/media/images'
-
 export const mercosulAnprGallery = [
   {
-    src: `${mercosulAnprMediaBase}/interface-resultado.webp`,
+    src: publicPath('assets/mercosul-anpr/interface-resultado.webp'),
     alt: 'Resultado consolidado de placa reconhecida no Mercosul ANPR',
     caption: 'Resultado consolidado após detecção, OCR e voto temporal.',
   },
   {
-    src: `${mercosulAnprMediaBase}/banner.webp`,
+    src: publicPath('assets/mercosul-anpr/detector-resultado.webp'),
     alt: 'Banner do projeto Mercosul ANPR',
     caption: 'Visão geral do sistema de reconhecimento de placas Mercosul ANPR.',
   },
   {
-    src: `${mercosulAnprMediaBase}/interface-upload.webp`,
+    src: publicPath('assets/mercosul-anpr/interface-upload.webp'),
     alt: 'Interface de envio de arquivo do Mercosul ANPR',
     caption: 'Envio de imagens e vídeos para processamento local.',
   },
   {
-    src: `${mercosulAnprMediaBase}/camera-tempo-real.webp`,
+    src: publicPath('assets/mercosul-anpr/camera-tempo-real.webp'),
     alt: 'Interface de câmera em tempo real do Mercosul ANPR',
     caption: 'Análise de placas por câmera em tempo real.',
   },
