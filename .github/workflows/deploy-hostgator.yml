@@ -37,6 +37,8 @@ jobs:
 
       - name: Build portfolio
         run: pnpm run build
+        env:
+          DEPLOY_TARGET: hostgator
 
       - name: Deploy dist to HostGator
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0

@@ -5,7 +5,7 @@ import path from 'path'
 
 export default defineConfig(({ command }) => ({
   // GitHub Pages uses the repository subpath; shared hosting serves from the domain root.
-  base: process.env.DEPLOY_TARGET === 'hostgator'
+  base: process.env.DEPLOY_TARGET?.toLowerCase() === 'hostgator'
     ? '/'
     : command === 'build'
       ? '/portfolio/'
