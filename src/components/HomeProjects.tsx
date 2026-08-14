@@ -36,7 +36,7 @@ export function HomeProjects() {
           {summarizedProjects.map((project) => (
             <a
               className="project-preview-card"
-              href={`${projectsPage}#${project.slug}`}
+              href={'page' in project ? project.page : `${projectsPage}#${project.slug}`}
               key={project.slug}
               aria-label={`Abrir detalhes de ${project.title}`}
               data-reveal

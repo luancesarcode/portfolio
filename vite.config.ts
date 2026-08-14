@@ -4,13 +4,19 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/portfolio/' : '/',
+  // GitHub Pages uses the repository subpath; shared hosting serves from the domain root.
+  base: process.env.DEPLOY_TARGET === 'hostgator'
+    ? '/'
+    : command === 'build'
+      ? '/portfolio/'
+      : '/',
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
         projetos: path.resolve(__dirname, 'projetos.html'),
+        mercosulAnpr: path.resolve(__dirname, 'mercosul-anpr/index.html'),
       },
     },
   },

@@ -51,6 +51,12 @@ export function ProjectCatalog({ standalone = false }: ProjectCatalogProps) {
                   <dt>PARTICIPAÇÃO</dt>
                   <dd>{application.contribution}</dd>
                 </dl>
+                {'page' in application && (
+                  <a className="project-repository-link" href={application.page}>
+                    Ver estudo completo
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                )}
                 {'repository' in application && (
                   <a className="project-repository-link" href={application.repository} target="_blank" rel="noopener noreferrer">
                     <Github aria-hidden="true" />
